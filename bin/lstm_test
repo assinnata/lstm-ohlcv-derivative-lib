@@ -1,0 +1,22 @@
+import time
+from lstm_ohlcv_derivative_lib.structures import OHLCV, OHLCVDerivate
+
+ohlcvList = [ 
+    OHLCV(
+        time = int(time.time()), 
+        open=1.01,
+        high=1.07,
+        low=1.007,
+        close= 1.009,
+        volume=10000,
+    ) 
+]
+
+testLSTMBar = OHLCVDerivate(ohlcvList).getLSTMBars()[0]
+assert testLSTMBar.bpx1 == 1.5873015872802654e-06
+assert testLSTMBar.bpx2 == 0
+assert testLSTMBar.div == 0
+assert testLSTMBar.hc == 9.682539682539682e-05
+assert testLSTMBar.dhc == 0
+assert testLSTMBar.cl == 3.1746031746031687e-06
+assert testLSTMBar.dcl == 0
